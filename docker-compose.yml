@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  mi-aplicacion-spring-boot:
+    build: .
+    ports:
+      - "8001:8001"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod

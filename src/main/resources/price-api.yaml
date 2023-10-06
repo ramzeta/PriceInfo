@@ -1,0 +1,508 @@
+openapi: "3.0.0"
+info:
+  title: "Price Management API"
+  version: "1.0.0"
+tags:
+  - name: "Brands"
+  - name: "Products"
+  - name: "Price Info"
+
+paths:
+  /brands:
+    get:
+      tags:
+        - "Brands"
+      summary: "Get all Brands"
+      operationId: "getBrands"
+      responses:
+        200:
+          description: "List of brands"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Brand"
+        400:
+          description: "Invalid status value"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        404:
+          description: "Brand not found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: "Unexpected error"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  code:
+                    type: integer
+    post:
+      tags:
+        - "Brands"
+      summary: "Create a new Brand"
+      operationId: "createBrand"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Brand"
+      responses:
+        201:
+          description: "Brand created successfully"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Brand"
+        400:
+          description: "Invalid status value"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        404:
+          description: "Brand not found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: "Unexpected error"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  code:
+                    type: integer
+    put:
+      tags:
+        - "Brands"
+      summary: "Update an existing Brand"
+      operationId: "updateBrand"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Brand"
+      responses:
+        200:
+          description: "Brand updated successfully"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Brand"
+        400:
+          description: "Invalid status value"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        404:
+          description: "Brand not found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: "Unexpected error"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  code:
+                    type: integer
+  /brands/{brandId}:
+    get:
+      tags:
+        - "Brands"
+      summary: "Get a Brand by Id"
+      operationId: "getBrandById"
+      parameters:
+        - name: brandId
+          in: path
+          required: true
+          schema:
+            type: "integer"
+      responses:
+        200:
+          description: "Return a brand based on Id"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Brand"
+        400:
+          description: "Invalid status value"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        404:
+          description: "Brand not found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: "Unexpected error"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  code:
+                    type: integer
+    delete:
+      tags:
+        - "Brands"
+      summary: "Delete an existing Brand"
+      operationId: "deleteBrand"
+      parameters:
+        - name: brandId
+          in: path
+          required: true
+          schema:
+            type: "integer"
+      responses:
+        204:
+          description: "Brand deleted successfully"
+        400:
+          description: "Invalid status value"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        404:
+          description: "Brand not found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: "Unexpected error"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  code:
+                    type: integer
+
+  /products:
+    get:
+      tags:
+        - "Products"
+      summary: "Get all Products"
+      operationId: "getProducts"
+      responses:
+        200:
+          description: "List of products"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Product"
+        400:
+          description: "Invalid status value"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        404:
+          description: "Product not found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: "Unexpected error"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  code:
+                    type: integer
+    post:
+      tags:
+        - "Products"
+      summary: "Create a new Product"
+      operationId: "createProduct"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Product"
+      responses:
+        201:
+          description: "Product created successfully"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        400:
+          description: "Invalid status value"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        404:
+          description: "Product not found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: "Unexpected error"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  code:
+                    type: integer
+    put:
+      tags:
+        - "Products"
+      summary: "Update an existing Product"
+      operationId: "updateProduct"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Product"
+      responses:
+        200:
+          description: "Product updated successfully"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        400:
+          description: "Invalid status value"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        404:
+          description: "Product not found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: "Unexpected error"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  code:
+                    type: integer
+  /products/{productId}:
+    get:
+      tags:
+        - "Products"
+      summary: "Get a Product by Id"
+      operationId: "getProductById"
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: "integer"
+      responses:
+        200:
+          description: "Return a product based on Id"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        400:
+          description: "Invalid status value"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        404:
+          description: "Product not found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: "Unexpected error"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  code:
+                    type: integer
+    delete:
+      tags:
+        - "Products"
+      summary: "Delete an existing Product"
+      operationId: "deleteProduct"
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: "integer"
+      responses:
+        204:
+          description: "Product deleted successfully"
+        400:
+          description: "Invalid status value"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        404:
+          description: "Product not found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: "Unexpected error"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  code:
+                    type: integer
+
+  /price-info:
+    get:
+      tags:
+        - "Price Info"
+      summary: "Get a Price Information based on parameters"
+      operationId: "getPriceInfo"
+      parameters:
+        - name: applicationDate
+          in: query
+          required: true
+          schema:
+            type: "string"
+            format: "date-time"
+        - name: productId
+          in: query
+          required: true
+          schema:
+            type: "integer"
+        - name: brandId
+          in: query
+          required: true
+          schema:
+            type: "integer"
+      responses:
+        200:
+          description: "Return a price information based on parameters"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PriceInfo"
+        400:
+          description: "Invalid status value"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        404:
+          description: "Price Info not found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: "Unexpected error"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  code:
+                    type: integer
+
+components:
+  schemas:
+    Brand:
+      type: "object"
+      properties:
+        brandId:
+          type: "integer"
+        brandName:
+          type: "string"
+
+    Product:
+      type: "object"
+      properties:
+        productId:
+          type: "integer"
+        productName:
+          type: "string"
+
+    PriceInfo:
+      type: "object"
+      properties:
+        priceInfoId:
+          type: "integer"
+        brandId:
+          type: "integer"
+        productId:
+          type: "integer"
+        startDate:
+          type: "string"
+          format: "date-time"
+        endDate:
+          type: "string"
+          format: "date-time"
+        priority:
+          type: "integer"
+        price:
+          type: "number"
+        curr:
+          type: "string"
+
+    Error:
+      type: "object"
+      properties:
+        code:
+          type: "integer"
+          format: "int32"
+        message:
+          type: "string"
