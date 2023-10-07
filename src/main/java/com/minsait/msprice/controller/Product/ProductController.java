@@ -1,30 +1,30 @@
-package com.minsait.msprice.controller.Product;
+package com.minsait.msprice.controller.product;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.minsait.msprice.controller.brand.BrandController;
 import com.minsait.msprice.model.entity.ProductEntity;
 import com.minsait.msprice.service.impl.ProductServiceImpl;
 import com.minsait.openapi.api.ProductsApi;
 import com.minsait.openapi.model.ProductDTO;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
+
 @RestController
 @RequiredArgsConstructor
 public class ProductController implements ProductsApi {
 
-    @Autowired
-    private ProductServiceImpl productService;
+    private static final Logger log = LoggerFactory.getLogger(BrandController.class);
 
-    @Autowired
-    private ProductApiMapper productMapper;
+    private final ProductServiceImpl productService;
+    private final ProductApiMapper productMapper;
 
     @Override
     public ResponseEntity<List<ProductDTO>> getProducts() {

@@ -9,6 +9,7 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,6 +22,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@EqualsAndHashCode
 @Table(name = "PRODUCT")
 public class ProductEntity {
 
@@ -30,20 +32,5 @@ public class ProductEntity {
     private Integer productId;
     private String productName;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (!(o instanceof ProductEntity))
-            return false;
-        ProductEntity that = (ProductEntity) o;
-        return getProductId().equals(that.getProductId()) &&
-                getProductName().equals(that.getProductName());
-    }
-
-    @Override
-    public int hashCode() {
-        return java.util.Objects.hash(getProductId(), getProductName());
-    }
 
 }

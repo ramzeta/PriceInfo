@@ -9,6 +9,7 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,6 +21,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
 @Entity
 @Table(name = "BRAND")
 public class BrandEntity {
@@ -29,21 +31,5 @@ public class BrandEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer brandId;
     private String brandName;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (!(o instanceof BrandEntity))
-            return false;
-        BrandEntity that = (BrandEntity) o;
-        return getBrandId().equals(that.getBrandId()) &&
-                getBrandName().equals(that.getBrandName());
-    }
-
-    @Override
-    public int hashCode() {
-        return java.util.Objects.hash(getBrandId(), getBrandName());
-    }
 
 }

@@ -2,7 +2,6 @@ package com.minsait.msprice.model.entity;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +12,7 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,6 +25,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@EqualsAndHashCode
 @Table(name = "PRICE_INFO")
 public class PriceInfoEntity {
 
@@ -41,24 +42,5 @@ public class PriceInfoEntity {
     private BigDecimal price;
     private String curr;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof PriceInfoEntity)) return false;
-        PriceInfoEntity price = (PriceInfoEntity) o;
-        return Objects.equals(getId(), price.getId()) &&
-                Objects.equals(getBrandId(), price.getBrandId()) &&
-                Objects.equals(getStartDate(), price.getStartDate()) &&
-                Objects.equals(getEndDate(), price.getEndDate()) &&
-                Objects.equals(getPriceList(), price.getPriceList()) &&
-                Objects.equals(getProductId(), price.getProductId()) &&
-                Objects.equals(getPriority(), price.getPriority()) &&
-                Objects.equals(getPrice(), price.getPrice()) &&
-                Objects.equals(getCurr(), price.getCurr());
-    }
 
-    @Override
-    public int hashCode() {
-        return id.hashCode();
-    }
 }
