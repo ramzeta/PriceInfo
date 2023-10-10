@@ -3,8 +3,6 @@ package com.minsait.msprice.controller.brand;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,13 +12,12 @@ import com.minsait.openapi.api.BrandsApi;
 import com.minsait.openapi.model.BrandDTO;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
-
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class BrandController implements BrandsApi {
-
-    private static final Logger log = LoggerFactory.getLogger(BrandController.class);
 
     private final BrandServiceImpl brandService;
     private final BrandApiMapper brandMapper;

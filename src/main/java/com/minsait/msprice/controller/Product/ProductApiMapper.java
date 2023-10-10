@@ -7,8 +7,8 @@ import com.minsait.openapi.model.ProductDTO;
 
 @Mapper(componentModel = "spring")
 public interface ProductApiMapper {
-    
+
         ProductEntity mapToEntity(ProductDTO productDTO);
-    
+
         ProductDTO mapToDTO(ProductEntity productEntity);
 }

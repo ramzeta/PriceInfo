@@ -32,7 +32,7 @@ public class PriceInfoController implements PriceInfoApi {
             @Valid OffsetDateTime applicationDate,
             @Valid Integer productId,
             @Valid Integer brandId) {
-        log.info("REST request to get PriceInfo : {}", applicationDate, productId, brandId);
+        log.info("REST request to get PriceInfo : {}", brandId);
         PriceInfoEntity priceInfoEntity = priceInfoService.findPriceInfoByProductIdAndBrandIdAndDate(applicationDate,
                 productId, brandId);
         PriceInfoDTO priceInfoDTO = priceInfoAPIMapper.mapToDTO(priceInfoEntity);
