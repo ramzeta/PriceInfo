@@ -13,4 +13,3 @@ public interface PriceInfoAPIMapper {
     PriceInfoDTO mapToDTO(PriceInfoEntity priceInfoEntity);
 
 }
-

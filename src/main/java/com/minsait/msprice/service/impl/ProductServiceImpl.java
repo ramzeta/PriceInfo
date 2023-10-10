@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.minsait.msprice.exception.ProductNotFoundException;
+import com.minsait.msprice.exception.ProductException;
 import com.minsait.msprice.model.entity.ProductEntity;
 import com.minsait.msprice.model.repository.ProductRepository;
 import com.minsait.msprice.service.ProductService;
@@ -27,7 +27,7 @@ public class ProductServiceImpl implements ProductService {
             return products.get();
         } else {
             log.error("Product not found");
-            throw new ProductNotFoundException("Product not found");
+            throw new ProductException("Product not found");
         }
     }
 
@@ -36,7 +36,7 @@ public class ProductServiceImpl implements ProductService {
         Optional<ProductEntity> productOptional = repository.findById(product.getProductId());
         if (productOptional.isPresent()) {
             log.error("Product already exists");
-            throw new ProductNotFoundException("Product already exists");
+            throw new ProductException("Product already exists");
         } else {
             log.debug("createProduct: {}", product);
             return repository.saveAndFlush(product);
@@ -51,7 +51,7 @@ public class ProductServiceImpl implements ProductService {
             return repository.saveAndFlush(product);
         } else {
             log.error("Product not found");
-            throw new ProductNotFoundException("Product not found");
+            throw new ProductException("Product not found");
         }
     }
 
@@ -63,7 +63,7 @@ public class ProductServiceImpl implements ProductService {
             return repository.findById(productId).orElse(null);
         } else {
             log.error("Product not found");
-            throw new ProductNotFoundException("Product not found");
+            throw new ProductException("Product not found");
         }
     }
 
@@ -74,7 +74,7 @@ public class ProductServiceImpl implements ProductService {
             repository.deleteById(productId);
         } else {
             log.error("Product not found");
-            throw new ProductNotFoundException("Product not found");
+            throw new ProductException("Product not found");
         }
     }
 

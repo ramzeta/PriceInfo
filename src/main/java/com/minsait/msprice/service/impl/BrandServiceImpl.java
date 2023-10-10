@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.minsait.msprice.exception.BrandNotFoundException;
+import com.minsait.msprice.exception.BrandException;
 import com.minsait.msprice.model.entity.BrandEntity;
 import com.minsait.msprice.model.repository.BrandRepository;
 import com.minsait.msprice.service.BrandService;
@@ -30,7 +30,7 @@ public class BrandServiceImpl implements BrandService {
             return brandOptional.get();
         } else {
             log.error("Brand not found");
-            throw new BrandNotFoundException("Brand not found");
+            throw new BrandException("Brand not found");
         }
     }
 
@@ -39,7 +39,7 @@ public class BrandServiceImpl implements BrandService {
         Optional<BrandEntity> brandOptional = repository.findById(brand.getBrandId());
         if (brandOptional.isPresent()) {
             log.error("Brand already exists");
-            throw new BrandNotFoundException("Brand already exists");
+            throw new BrandException("Brand already exists");
         } else {
             log.debug("createBrand: {}", brand);
             return repository.saveAndFlush(brand);
@@ -51,7 +51,7 @@ public class BrandServiceImpl implements BrandService {
         Optional<BrandEntity> brandOptional = repository.findById(brand.getBrandId());
         if (!brandOptional.isPresent()) {
             log.error("Brand not found");
-            throw new BrandNotFoundException("Brand not found");
+            throw new BrandException("Brand not found");
         } else {
             log.debug("updateBrand: {}", brand);
             return repository.saveAndFlush(brand);
@@ -66,7 +66,7 @@ public class BrandServiceImpl implements BrandService {
             return repository.findById(brandId).orElse(null);
         } else {
             log.error("Brand not found");
-            throw new BrandNotFoundException("Brand not found");
+            throw new BrandException("Brand not found");
         }
     }
 
@@ -78,7 +78,7 @@ public class BrandServiceImpl implements BrandService {
             repository.deleteById(brandId);
         } else {
             log.error("Brand not found");
-            throw new BrandNotFoundException("Brand not found");
+            throw new BrandException("Brand not found");
         }
     }
 
